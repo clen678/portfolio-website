@@ -20,7 +20,7 @@ export default function ProjectsWindow() {
             <ProjectCard 
                 title="WDCC Volunteers Website"
                 description="Developer for a club website that manages volunteer sign-ups and event coordination."
-                imageUrl="/vols.png" tags={["React.js", "Node.js", "Firebase", "Fire CMS"]} />
+                imageUrl="/vols.png" tags={["React.js", "Node.js", "Firebase"]} />
         </div>
     );
 }
