@@ -7,8 +7,8 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ title, description, imageUrl, tags }: ProjectCardProps) {
     return (
-        <div className="flex w-full bg-[#3d3d3d] rounded-2xl shadow-[5px_12px_30px_rgba(0,0,0,0.45)] border-l-4 border-[#eb6628]
-            transition-transform duration-200 ease-out hover:-translate-y-2 hover:-translate-x-2 hover:-rotate-1 hover:border-[#faa82e] hover:cursor-pointer">
+        <div className="flex w-full bg-[#3d3d3d] hover:bg-[#4e4e4e] rounded-2xl shadow-[5px_12px_30px_rgba(0,0,0,0.45)] border-l-4 border-[#eb6628]
+            transition-all duration-200 ease-out hover:-translate-y-2 hover:-translate-x-2 hover:-rotate-1 hover:border-[#faa82e] hover:cursor-pointer">
             <div className="w-[55%]">
                 <img src={imageUrl} alt={title}
                     className="rounded-l-2xl aspect-video object-cover" />
