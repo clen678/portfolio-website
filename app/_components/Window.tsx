@@ -165,6 +165,7 @@ export default function Window({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.1, ease: "easeOut" }}
+            onMouseDown={() => onFocus?.()}
             style={{
                 x: position.x,
                 y: position.y,
@@ -184,11 +185,11 @@ export default function Window({
                 </button>
 
                 <button className="px-3 hover:cursor-pointer" type="button" onClick={handleMaximize}>
-                    {isMaximized ? <SquareArrowDownLeft size={16} className="hover:bg-[#ffffff23] p-[1px]" /> : <Square size={16} className="hover:bg-[#ffffff23] p-[1px]"/>}
+                    {isMaximized ? <SquareArrowDownLeft size={16} className="hover:bg-[#ffffff23] p-px" /> : <Square size={16} className="hover:bg-[#ffffff23] p-px"/>}
                 </button>
 
                 <button className="px-3 hover:cursor-pointer" type="button" onClick={closeWindow}>
-                    <X size={16} className="bg-[#EB5625] rounded-full p-[1px] hover:bg-[#fd7649]"/>
+                    <X size={16} className="bg-[#EB5625] rounded-full p-px hover:bg-[#fd7649]"/>
                 </button>
             </div>
 

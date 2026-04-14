@@ -31,7 +31,7 @@ export default function Home() {
     "Terminal": { isOpen: true, zIndex: 50, x: BASE_WINDOW_X, y: BASE_WINDOW_Y },
   });
   const [highestZIndex, setHighestZIndex] = useState(50);
-  const [nextWindowOffsetStep, setNextWindowOffsetStep] = useState(0);
+  const [nextWindowOffsetStep, setNextWindowOffsetStep] = useState(1);
 
   const openWindow = (windowType: WindowName) => {
     const nextZIndex = highestZIndex + 1;
