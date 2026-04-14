@@ -18,7 +18,7 @@ type WindowState = {
 
 export default function Home() {
   const BASE_WINDOW_X = 300;
-  const BASE_WINDOW_Y = 120;
+  const BASE_WINDOW_Y = 90;
   const WINDOW_OFFSET_X = 24;
   const WINDOW_OFFSET_Y = 20;
   const MAX_OFFSET_STEPS = 10;

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Minus, Maximize2, Minimize2, X } from "lucide-react";
+import { Minus, Square, SquareArrowDownLeft, X } from "lucide-react";
 
 import FileExplorerWindow from "./FileExplorerWindow";
 import AboutMeWindow from "./AboutMeWindow";
@@ -26,7 +26,7 @@ type WindowProps = {
 export default function Window({
     windowType,
     initialX = 300,
-    initialY = 120,
+    initialY = 90,
     width = 800,
     height = 500,
     chromeOffsetX = 0,
@@ -174,21 +174,21 @@ export default function Window({
             }}
         >
             <div
-                className="text-white flex h-10 w-full pl-3 cursor-move select-none rounded-t-md bg-[#333031]"
+                className="text-white flex h-8 w-full pl-3 cursor-move select-none rounded-t-md bg-[#333031]"
                 onMouseDown={handleMouseDown}
             >
-                <div className="flex items-center h-full">{windowType}</div>
+                <div className="flex items-center h-full py-2">{windowType}</div>
 
                 <button className="px-3 ml-auto hover:cursor-pointer" type="button" onClick={closeWindow}>
-                    <Minus size={16} />
+                    <Minus size={16} className="hover:bg-[#ffffff23] rounded-xs"/>
                 </button>
 
                 <button className="px-3 hover:cursor-pointer" type="button" onClick={handleMaximize}>
-                    {isMaximized ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                    {isMaximized ? <SquareArrowDownLeft size={16} className="hover:bg-[#ffffff23] p-[1px]" /> : <Square size={16} className="hover:bg-[#ffffff23] p-[1px]"/>}
                 </button>
 
-                <button className="px-3 hover:cursor-pointer bg-[#EB5625]" type="button" onClick={closeWindow}>
-                    <X size={16} />
+                <button className="px-3 hover:cursor-pointer" type="button" onClick={closeWindow}>
+                    <X size={16} className="bg-[#EB5625] rounded-full p-[1px] hover:bg-[#fd7649]"/>
                 </button>
             </div>
 
