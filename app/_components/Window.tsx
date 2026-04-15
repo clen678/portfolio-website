@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Minus, Square, SquareArrowDownLeft, X } from "lucide-react";
+import { Minus, Square, SquareArrowDownLeft, X, SquarePlus, Search, Menu } from "lucide-react";
 
 import FileExplorerWindow from "./FileExplorerWindow";
 import AboutMeWindow from "./AboutMeWindow";
@@ -158,6 +158,48 @@ export default function Window({
         setIsMaximized(!isMaximized);
     };
 
+    const renderWindowLeftSide = (type: string) => {
+        switch (type) {
+            case "File Explorer":
+                return <img src="/folder-open.svg" alt="File Explorer" className="w-4 h-4" />;
+            case "About Me":
+                return <img src="/about.svg" alt="About Me" className="w-4 h-4" />;
+            case "Contact":
+                return <img src="/chat.svg" alt="Contact" className="w-4 h-4" />;
+            case "Terminal":
+                return (<div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"><SquarePlus size={16} /></div>);
+            case "Projects":
+                return <img src="/folderopen.svg" alt="Projects" className="w-4 h-4" />;
+            default:
+                return null;
+        }
+    };
+
+    const renderWindowRightSide = (type: string) => {
+        switch (type) {
+            case "File Explorer":
+                return;
+            case "About Me":
+                return;
+            case "Contact":
+                return
+            case "Terminal":
+                return (
+                <div className="max-[800px]:hidden flex gap-2 mr-2">
+                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]">
+                            <Search size={16} />
+                        </div>
+                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]">
+                            <Menu size={16} />
+                        </div>
+                </div>);
+            case "Projects":
+                return
+            default:
+                return null;
+        }
+    };
+
     return (
         <motion.div
             className="fixed top-0 left-0 flex flex-col rounded-md shadow-xl border-t border-[#474544]"
@@ -175,22 +217,31 @@ export default function Window({
             }}
         >
             <div
-                className="text-white flex h-8 w-full pl-3 cursor-move select-none rounded-t-md bg-[#333031]"
+                className="text-white grid grid-cols-[1fr_2fr_1fr] h-10 w-full items-center px-3 cursor-move select-none rounded-t-md bg-linear-to-b from-[#3d393b] to-[#333031]"
                 onMouseDown={handleMouseDown}
             >
-                <div className="flex items-center h-full py-2">{windowType}</div>
+                <div className="flex items-center gap-2">
+                    {renderWindowLeftSide(windowType)}
+                </div>
+                
+                <div className="flex items-center justify-center h-full">{windowType}</div>
 
-                <button className="px-3 ml-auto hover:cursor-pointer" type="button" onClick={closeWindow}>
-                    <Minus size={16} className="hover:bg-[#ffffff23] rounded-xs"/>
-                </button>
+                <div className="flex items-center gap-2 ml-auto hover:cursor-default">
+                    
+                    {renderWindowRightSide(windowType)}
 
-                <button className="px-3 hover:cursor-pointer" type="button" onClick={handleMaximize}>
-                    {isMaximized ? <SquareArrowDownLeft size={16} className="hover:bg-[#ffffff23] p-px" /> : <Square size={16} className="hover:bg-[#ffffff23] p-px"/>}
-                </button>
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={closeWindow}>
+                        <Minus size={11} strokeWidth={2.5} />
+                    </button>
 
-                <button className="px-3 hover:cursor-pointer" type="button" onClick={closeWindow}>
-                    <X size={16} className="bg-[#EB5625] rounded-full p-px hover:bg-[#fd7649]"/>
-                </button>
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={handleMaximize}>
+                        {isMaximized ? <SquareArrowDownLeft size={11} strokeWidth={2.5} /> : <Square size={11} strokeWidth={2.5} />}
+                    </button>
+
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={closeWindow}>
+                        <X size={11} strokeWidth={2.5} />
+                    </button>
+                </div>
             </div>
 
             {renderWindowContent()}
