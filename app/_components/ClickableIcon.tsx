@@ -12,7 +12,7 @@ type ClickableIconProps = {
 export default function ClickableIcon({ img, size, alt, label, isFileIcon, openWindow }: ClickableIconProps) {
 
     return (
-        <div className={`flex justify-center items-center w-full p-[10%] rounded-md hover:bg-[#ffffff23] hover:cursor-pointer ${label ? 'aspect-square' : 'aspect-square'}`} onClick={openWindow}>
+        <div className={`flex justify-center items-center w-full p-[10%] rounded-md hover:bg-[#ffffff23] hover:cursor-pointer ${label ? 'aspect-square' : 'aspect-square pt-[16%]'}`} onClick={openWindow}>
             <div className={`${label ? 'aspect-square w-[70%]' : 'w-full h-full'}`}>
                 <img src={img} alt={alt} className="w-full object-contain" />
                 {label && (
