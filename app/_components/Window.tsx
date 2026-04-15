@@ -161,7 +161,7 @@ export default function Window({
     const renderWindowLeftSide = (type: string) => {
         switch (type) {
             case "File Explorer":
-                return <img src="/folder-open.svg" alt="File Explorer" className="w-4 h-4" />;
+                return <img src="/file-explorer.svg" alt="File Explorer" className="w-4 h-4" />;
             case "About Me":
                 return <img src="/about.svg" alt="About Me" className="w-4 h-4" />;
             case "Contact":
