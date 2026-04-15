@@ -11,9 +11,9 @@ export default function FileExplorerWindow() {
             </div>
 
             <div className="grid grid-cols-4 grid-rows-2 gap-5 p-3 bg-white rounded-br-md w-full h-full">
-                <ClickableIcon img="/file.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
-                <ClickableIcon img="/file.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
-                <ClickableIcon img="/file.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
+                <ClickableIcon img="/folder.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
+                <ClickableIcon img="/folder.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
+                <ClickableIcon img="/folder.svg" alt="home" size={50} label="wdwd" isFileIcon={true} />
             </div>
         </div>
     );
