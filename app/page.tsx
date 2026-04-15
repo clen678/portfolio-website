@@ -89,9 +89,9 @@ export default function Home() {
           grid grid-cols-2 grid-rows-4 gap-y-3 gap-x-3 max-h-[50%] p-[1%]
           [@media(max-height:700px)]:max-h-[60%]
         ">
-          <ClickableIcon img="/folder.svg" alt="home" size={50} label="Projects" openWindow={() => openWindow("Projects")} />
-          <ClickableIcon img="/square-user-round.svg" alt="home" size={50} label="About Me" openWindow={() => openWindow("About Me")} />
-          <ClickableIcon img="/globe.svg" alt="home" size={50} label="Contact" openWindow={() => openWindow("Contact")} />
+          <ClickableIcon img="/folderopen.svg" alt="home" size={50} label="Projects" openWindow={() => openWindow("Projects")} />
+          <ClickableIcon img="/about.svg" alt="home" size={50} label="About Me" openWindow={() => openWindow("About Me")} />
+          <ClickableIcon img="/chat.svg" alt="home" size={50} label="Contact" openWindow={() => openWindow("Contact")} />
           <ClickableIcon img="/folder-open.svg" alt="home" size={50} label="hwllo" openWindow={() => openWindow("File Explorer")} />
           <ClickableIcon img="/file.svg" alt="home" size={50} label="UwU" openWindow={() => openWindow("File Explorer")} />
         </div>
