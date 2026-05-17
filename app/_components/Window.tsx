@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Minus, Square, SquareArrowDownLeft, X, SquarePlus, Search, Menu } from "lucide-react";
+import { Minus, Square, SquareArrowDownLeft, X, SquarePlus, Search, Menu, ChevronLeft, ChevronRight } from "lucide-react";
 
 import FileExplorerWindow from "./FileExplorerWindow";
 import AboutMeWindow from "./AboutMeWindow";
@@ -63,7 +63,7 @@ export default function Window({
             case "Terminal":
                 return <TerminalWindow />;
             case "Projects":
-                return <ProjectsWindow isMaximized={isMaximized} />;
+                return <ProjectsWindow isMaximized={isMaximized} goBack={handleGoBack} goForward={handleGoForward} />;
             default:
                 return <div>Unknown Window</div>;
         }
@@ -158,6 +158,16 @@ export default function Window({
         setIsMaximized(!isMaximized);
     };
 
+    const handleGoBack = () => {
+        // Implement navigation logic for going back in the Projects window
+        alert("Go back clicked!");
+    };
+
+    const handleGoForward = () => {
+        // Implement navigation logic for going forward in the Projects window
+        alert("Go forward clicked!");
+    };
+
     const renderWindowLeftSide = (type: string) => {
         switch (type) {
             case "File Explorer":
@@ -169,7 +179,18 @@ export default function Window({
             case "Terminal":
                 return (<div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"><SquarePlus size={16} /></div>);
             case "Projects":
-                return <img src="/folderopen.svg" alt="Projects" className="w-4 h-4" />;
+                return (
+                <>
+                    <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"
+                        onClick={handleGoBack}>
+                        <ChevronLeft size={16} />
+                    </div>
+                    <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"
+                        onClick={handleGoForward}>
+                        <ChevronRight size={16} />
+                    </div>
+                    {/* <img src="/folderopen.svg" alt="Projects" className="w-4 h-4" /> */}
+                </>);
             default:
                 return null;
         }

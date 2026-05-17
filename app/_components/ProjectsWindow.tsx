@@ -3,14 +3,15 @@ import ProjectCard from "./ProjectCard";
 
 type ProjectsWindowProps = {
     isMaximized: boolean;
+    goBack: () => void;
+    goForward: () => void;
 }
 
-export default function ProjectsWindow( { isMaximized }: ProjectsWindowProps ) {
+export default function ProjectsWindow( { isMaximized, goBack, goForward }: ProjectsWindowProps ) {
     return (
         <div className={`flex flex-col gap-5 w-full h-full bg-[#1E1E1E] rounded-b-md  max-[800px]:p-4 overflow-y-scroll
             ${!isMaximized ? 'py-3 px-8' : 'px-[4%] py-[3%]'}`}>
-            <pre className={`text-[#eb6628] font-mono font-bold whitespace-pre leading-tight max-[800px]:text-[10px]
-                ${!isMaximized ? 'pb-3' : 'pb-8 max-[800px]:pb-3'}`}>
+            <pre className={`text-[#eb6628] font-mono font-bold whitespace-pre leading-tight max-[800px]:text-[10px]`}>
 {`     ____               _           __
     / __ \\_________    (_)__  _____/ /______
    / /_/ / ___/ __ \\  / / _ \\/ ___/ __/ ___/
@@ -18,6 +19,10 @@ export default function ProjectsWindow( { isMaximized }: ProjectsWindowProps ) {
  /_/   /_/   \\____/_/ /\\___/\\___/\\__/____/
                   /__/         `}             
             </pre>
+            <div className={`max-[800px]:text-xs ${!isMaximized ? 'pb-3' : 'pb-8 max-[800px]:pb-3'}`}>
+                <p>Welcome to my interactive portfolio website!</p>
+                <p>Click around on the desktop and taskbar icons to explore and.</p>
+            </div>
             <div className={`flex flex-col gap-5 ${!isMaximized ? '' : 'max-[950px]:items-center'}`}>
                 <ProjectCard
                     title="Autonomous F1Tenth"
