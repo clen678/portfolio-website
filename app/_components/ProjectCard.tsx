@@ -4,13 +4,15 @@ type ProjectCardProps = {
     imageUrl: string;
     tags: string[];
     isMaximized?: boolean;
+    onClick: () => void;
 }
 
-export default function ProjectCard({ title, description, imageUrl, tags, isMaximized }: ProjectCardProps) {
+export default function ProjectCard({ title, description, imageUrl, tags, isMaximized, onClick }: ProjectCardProps) {
     return (
         <div className={`flex bg-[#3d3d3d] hover:bg-[#4e4e4e] rounded-2xl shadow-[5px_12px_30px_rgba(0,0,0,0.45)] border-l-4 border-[#eb6628]
             transition-all duration-200 ease-out hover:-translate-y-2 hover:-translate-x-1 hover:-rotate-0 hover:border-[#faa82e] hover:cursor-pointer
-            ${!isMaximized ? 'w-full max-[800px]:flex-col' : 'max-[950px]:flex-col max-[950px]:w-[90%] max-[800px]:w-full'}`}>
+            ${!isMaximized ? 'w-full max-[800px]:flex-col' : 'max-[950px]:flex-col max-[950px]:w-[90%] max-[800px]:w-full'}`}
+            onClick={onClick}>
             <div className={`${!isMaximized ? 'w-[55%] max-[800px]:w-full' : 'w-[40%] max-[950px]:w-full'}`}>
                 <img src={imageUrl} alt={title}
                     className={`aspect-video object-cover ${!isMaximized ? 'min-[801px]:rounded-l-2xl max-[800px]:rounded-t-2xl' : 'max-[950px]:rounded-t-2xl min-[951px]:rounded-l-2xl'}`} />
