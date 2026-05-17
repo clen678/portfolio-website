@@ -9,8 +9,8 @@ export default function ProjectsWindow( { isMaximized }: ProjectsWindowProps ) {
     return (
         <div className={`flex flex-col gap-5 w-full h-full bg-[#1E1E1E] rounded-b-md  max-[800px]:p-4 overflow-y-scroll
             ${!isMaximized ? 'py-3 px-8' : 'px-[4%] py-[3%]'}`}>
-            <pre className={`text-[#eb6628] font-mono font-bold whitespace-pre leading-tight
-                ${!isMaximized ? 'pb-3' : 'pb-8'}`}>
+            <pre className={`text-[#eb6628] font-mono font-bold whitespace-pre leading-tight max-[800px]:text-[10px]
+                ${!isMaximized ? 'pb-3' : 'pb-8 max-[800px]:pb-3'}`}>
 {`     ____               _           __
     / __ \\_________    (_)__  _____/ /______
    / /_/ / ___/ __ \\  / / _ \\/ ___/ __/ ___/
