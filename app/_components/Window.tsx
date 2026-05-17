@@ -63,7 +63,7 @@ export default function Window({
             case "Terminal":
                 return <TerminalWindow />;
             case "Projects":
-                return <ProjectsWindow />;
+                return <ProjectsWindow isMaximized={isMaximized} />;
             default:
                 return <div>Unknown Window</div>;
         }
