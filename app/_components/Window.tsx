@@ -52,6 +52,13 @@ export default function Window({
     const [prevState, setPrevState] = useState({ x: initialX, y: initialY, width, height });
     const dragRef = useRef({ startX: 0, startY: 0, offsetX: 0, offsetY: 0 });
 
+    const [onStartPage, setOnStartPage] = useState(true);
+
+    const [projectsCurrentProject, setProjectsCurrentProject] = useState<string>("");
+    const [projectsHistory, setProjectsHistory] = useState<string[]>(["start"]);
+    const [projectsHistoryIndex, setProjectsHistoryIndex] = useState<number>(0);
+    const [projectsProjectOpen, setProjectsProjectOpen] = useState<boolean>(false);
+
     const renderWindowContent = () => {
         switch (windowType) {
             case "File Explorer":
@@ -63,7 +70,7 @@ export default function Window({
             case "Terminal":
                 return <TerminalWindow />;
             case "Projects":
-                return <ProjectsWindow isMaximized={isMaximized} goBack={handleGoBack} goForward={handleGoForward} />;
+                return <ProjectsWindow isMaximized={isMaximized} historyIndex={projectsHistoryIndex} setProjectsHistoryIndex={setProjectsHistoryIndex} setHistory={setProjectsHistory} currentProject={projectsCurrentProject} setCurrentProject={setProjectsCurrentProject} projectOpen={projectsProjectOpen} setProjectOpen={setProjectsProjectOpen} onStartPage={onStartPage} setOnStartPage={setOnStartPage} />;
             default:
                 return <div>Unknown Window</div>;
         }
@@ -159,14 +166,58 @@ export default function Window({
     };
 
     const handleGoBack = () => {
-        // Implement navigation logic for going back in the Projects window
-        alert("Go back clicked!");
+        switch (windowType) {
+            case "Projects":
+                if (projectsHistoryIndex === 0) return;
+
+                const backIndex = projectsHistoryIndex - 1;
+                setProjectsHistoryIndex(backIndex);
+
+                const backEntry = projectsHistory[backIndex];
+
+                if (backEntry === "start") {
+                    setProjectsProjectOpen(false);
+                    setProjectsCurrentProject("");
+                    setOnStartPage(true);
+                    return;
+                }
+
+                setProjectsProjectOpen(true);
+                setProjectsCurrentProject(backEntry);
+                setOnStartPage(false);
+                return;
+        }
     };
 
     const handleGoForward = () => {
-        // Implement navigation logic for going forward in the Projects window
-        alert("Go forward clicked!");
+        switch (windowType) {
+            case "Projects":
+                if (projectsHistoryIndex >= projectsHistory.length - 1) return;
+
+                const forwardIndex = projectsHistoryIndex + 1;
+                setProjectsHistoryIndex(forwardIndex);
+
+                const forwardEntry = projectsHistory[forwardIndex];
+
+                if (forwardEntry === "start") {
+                    setProjectsProjectOpen(false);
+                    setProjectsCurrentProject("");
+                    setOnStartPage(true);
+                    return;
+                }
+
+                setProjectsProjectOpen(true);
+                setProjectsCurrentProject(forwardEntry);
+                setOnStartPage(false);
+                return;
+        }
     };
+
+    //print history and index on change
+    useEffect(() => {
+        console.log("history:", projectsHistory);
+        console.log("index:", projectsHistoryIndex);
+    }, [projectsHistory, projectsHistoryIndex]);
 
     const renderWindowLeftSide = (type: string) => {
         switch (type) {
@@ -177,15 +228,15 @@ export default function Window({
             case "Contact":
                 return <img src="/chat.svg" alt="Contact" className="w-4 h-4" />;
             case "Terminal":
-                return (<div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"><SquarePlus size={16} /></div>);
+                return (<div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-1.25"><SquarePlus size={16} /></div>);
             case "Projects":
                 return (
                 <>
-                    <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"
+                        <div className={`bg-[#ffffff23] rounded-md p-1.25 ${projectsHistoryIndex === 0 ? 'opacity-50 cursor-default pointer-events-none' : 'hover:bg-[#ffffff49] hover:cursor-pointer'}`}
                         onClick={handleGoBack}>
                         <ChevronLeft size={16} />
                     </div>
-                    <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]"
+                        <div className={`bg-[#ffffff23] rounded-md p-1.25 ${projectsHistoryIndex === projectsHistory.length - 1 ? 'opacity-50 cursor-default pointer-events-none' : 'hover:bg-[#ffffff49] hover:cursor-pointer'}`}
                         onClick={handleGoForward}>
                         <ChevronRight size={16} />
                     </div>
@@ -207,10 +258,10 @@ export default function Window({
             case "Terminal":
                 return (
                 <div className="max-[800px]:hidden flex gap-2 mr-2">
-                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]">
+                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-1.25">
                             <Search size={16} />
                         </div>
-                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]">
+                        <div className="bg-[#ffffff23] rounded-md hover:bg-[#ffffff49] hover:cursor-pointer p-1.25">
                             <Menu size={16} />
                         </div>
                 </div>);
@@ -251,15 +302,15 @@ export default function Window({
                     
                     {renderWindowRightSide(windowType)}
 
-                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={closeWindow}>
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-1.25" type="button" onClick={closeWindow}>
                         <Minus size={11} strokeWidth={2.5} />
                     </button>
 
-                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={handleMaximize}>
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-1.25" type="button" onClick={handleMaximize}>
                         {isMaximized ? <SquareArrowDownLeft size={11} strokeWidth={2.5} /> : <Square size={11} strokeWidth={2.5} />}
                     </button>
 
-                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-[5px]" type="button" onClick={closeWindow}>
+                    <button className="bg-[#ffffff23] rounded-full hover:bg-[#ffffff49] hover:cursor-pointer p-1.25" type="button" onClick={closeWindow}>
                         <X size={11} strokeWidth={2.5} />
                     </button>
                 </div>
