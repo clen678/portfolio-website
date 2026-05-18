@@ -18,7 +18,7 @@ export default function ProjectCard({ title, description, imageUrl, tags, isMaxi
                     className={`aspect-video object-cover ${!isMaximized ? 'min-[801px]:rounded-l-2xl max-[800px]:rounded-t-2xl' : 'max-[950px]:rounded-t-2xl min-[951px]:rounded-l-2xl'}`} />
             </div>
 
-            <div className={`relative flex flex-col justify-between h-full max-[800px]:py-2 max-[800px]:pr-2 ${!isMaximized ? 'w-[45%] py-4 min-[800px]:px-[2%] max-[801px]:px-[3%] max-[800px]:w-full' : 'w-[60%] py-[1.5%] px-[2%] max-[950px]:w-full'}`}>
+            <div className={`relative flex flex-col justify-between h-full max-[800px]:py-2 max-[800px]:pr-2 ${!isMaximized ? 'w-[45%] py-4 px-[3%] max-[800px]:w-full' : 'w-[60%] py-[1.5%] max-[800px]:px-[3%] px-[2%] max-[950px]:w-full'}`}>
                 {/* <div className="absolute border-l-4 border-[#3d3d3d] rounded-l-2xl w-5 h-full top-0 -left-2 bg-[#3d3d3d]" /> */}
                 <div>
                     <p className="font-medium text-2xl max-[800px]:text-[18px] w-full my-1">{title}</p>
