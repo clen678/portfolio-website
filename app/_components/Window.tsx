@@ -64,7 +64,7 @@ export default function Window({
             case "File Explorer":
                 return <FileExplorerWindow />;
             case "About Me":
-                return <AboutMeWindow />;
+                return <AboutMeWindow isMaximized={isMaximized} />;
             case "Contact":
                 return <ContactWindow />;
             case "Terminal":

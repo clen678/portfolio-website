@@ -75,7 +75,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-dvh overflow-hidden bg-linear-to-br from-[#cf462e] via-[#6E162B] to-[#30032D]">
+    <div className="flex flex-col h-dvh overflow-hidden bg-linear-to-br from-[#cf462e] via-[#6e1642] to-[#30032D]">
       <div className="h-8">
         <TopBar />
       </div>

@@ -67,7 +67,7 @@ export default function ProjectsWindow({ isMaximized, historyIndex, setProjectsH
             {!projectOpen ? 
             (
                 <>
-                    <div className={`max-[800px]:text-xs ${!isMaximized ? 'pb-3' : 'pb-8 max-[800px]:pb-3'}`}>
+                    <div className={`max-[800px]:text-sm ${!isMaximized ? 'pb-3' : 'pb-8 max-[800px]:pb-3'}`}>
                         <p>Welcome to my interactive portfolio website!</p>
                         <p>Click around on the desktop and taskbar icons to explore and.</p>
                     </div>
